@@ -175,7 +175,7 @@
         app:srcCompat="@mipmap/thefan" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/passwordfiled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -224,7 +224,7 @@
         android:textColor="#D6B1B1"
         android:textSize="10dp"
         app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toTopOf="@+id/passwordfiled" />
 
     <TextView
         android:id="@+id/backText"
@@ -254,5 +254,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.074"
         app:srcCompat="@mipmap/leftarrow" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

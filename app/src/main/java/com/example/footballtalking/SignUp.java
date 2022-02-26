@@ -1,14 +1,48 @@
 package com.example.footballtalking;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class SignUp extends AppCompatActivity {
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.regex.Pattern;
+
+public class SignUp extends AppCompatActivity implements View.OnClickListener {
+
+    private EditText editName;
+    private EditText editEmail;
+    private EditText editPassword;
+    private EditText editPasswordAgain;
+    private EditText editDoB;
+    final Calendar myCalendar= Calendar.getInstance();
+
+
+    private Button registerUser;
+
+    private ProgressBar progressBar;
+
+    private FirebaseAuth mAuth;
+
     private ImageView leftArrows;
 
     @Override
@@ -43,6 +77,44 @@ public class SignUp extends AppCompatActivity {
         });
 
 
+        mAuth = FirebaseAuth.getInstance();
+
+        registerUser = (Button) findViewById(R.id.SignupButton);
+        registerUser.setOnClickListener(this);
+
+        editName = (EditText) findViewById(R.id.UserName);
+        editEmail = (EditText) findViewById(R.id.UserEmail);
+        editPassword = (EditText) findViewById(R.id.UserPassword);
+        editPasswordAgain = (EditText) findViewById(R.id.UserPasswordAgain);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        editDoB = (EditText) findViewById(R.id.dateOfBirth);
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH,month);
+                myCalendar.set(Calendar.DAY_OF_MONTH,day);
+                updateLabel();
+            }
+        };
+
+        editDoB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(SignUp.this, date ,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+
+    }
+
+    private void updateLabel(){
+        String myFormat="MM/dd/yy";
+        SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
+        editDoB.setText(dateFormat.format(myCalendar.getTime()));
     }
 
     public void openMainPage() {
@@ -56,5 +128,106 @@ public class SignUp extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.SignupButton:
+                registerUser();
+        }
 
+    }
+
+    private void registerUser() {
+        String name = editName.getText().toString().trim();
+        String email = editEmail.getText().toString().trim();
+        String pass = editPassword.getText().toString().trim();
+        String passAgain = editPasswordAgain.getText().toString().trim();
+        String dob = editDoB.getText().toString().trim();
+
+        if (name.isEmpty()) {
+            editName.setError("Name is required!");
+            editName.requestFocus();
+            return;
+        }
+
+        if (email.isEmpty()) {
+            editEmail.setError("Email is required!");
+            editEmail.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editEmail.setError("Please provide valid email!");
+            editEmail.requestFocus();
+            return;
+        }
+
+        if (pass.isEmpty()) {
+            editPassword.setError("Password is required!");
+            editPassword.requestFocus();
+            return;
+        }
+
+        if (pass.length() < 6) {
+            editPassword.setError("Minimum password length should be 6 characters!");
+            editPassword.requestFocus();
+            return;
+        }
+
+        if (passAgain.isEmpty()) {
+            editPasswordAgain.setError("Password is required!");
+            editPasswordAgain.requestFocus();
+            return;
+        }
+
+        if (!passAgain.matches(pass)) {
+            editPasswordAgain.setError("Password doesn't match!");
+            editPasswordAgain.requestFocus();
+            return;
+        }
+
+        if (dob.isEmpty()) {
+            editDoB.setError("Date of Birth is required!");
+            editDoB.requestFocus();
+            return;
+        }
+
+
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.createUserWithEmailAndPassword(email , pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if (task.isSuccessful()) {
+                    User user = new User(name , email , pass , dob);
+
+                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if (task.isSuccessful()) {
+                                Toast.makeText(SignUp.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
+
+                            }
+                            else {
+                                Toast.makeText(SignUp.this, "Failed to register! try again!" , Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
+                            }
+
+
+                        }
+                    });
+                }
+                else {
+                    Toast.makeText(SignUp.this, "Failed to register! try again!" , Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+
+                }
+
+            }
+        });
+
+    }
 }
