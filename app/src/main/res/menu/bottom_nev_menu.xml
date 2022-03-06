@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Chatroom"
+          android:icon="@drawable/chat2"
+           android:id="@+id/chat"
+
+        />
+
+    <item android:title="Home"
+        android:icon="@drawable/stadium2"
+        android:id="@+id/home"
+
+
+
+        />
+
+    <item android:title="Vote"
+        android:icon="@drawable/vote2"
+        android:id="@+id/vote"
+
+
+
+        />
+</menu>
