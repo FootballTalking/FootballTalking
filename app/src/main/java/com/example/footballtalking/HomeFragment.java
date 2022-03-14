@@ -1,21 +1,18 @@
 package com.example.footballtalking;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.footballtalking.databinding.ActivityLoginBinding;
-import com.example.footballtalking.databinding.ActivityMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,34 +21,28 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class HomePage extends AppCompatActivity {
-
-
-
+public class HomeFragment extends Fragment {
 
     private FirebaseUser user;
     private DatabaseReference reference;
     private String userID;
 
+
     private ImageView logOut;
 
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        setContentView(R.layout.activity_home_page);
+        View view = inflater.inflate(R.layout.activity_home_page, container, false);
 
-
-
-
-
-
-        logOut = (ImageView) findViewById(R.id.logOutBtn);
+        logOut = (ImageView) view.findViewById(R.id.logOutBtn);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(HomePage.this, MainActivity.class));
+                startActivity(new Intent(getActivity(), MainActivity.class));
             }
         });
 
@@ -59,7 +50,7 @@ public class HomePage extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userID = user.getUid();
 
-        final TextView username = (TextView) findViewById(R.id.userName);
+        final TextView username = (TextView) view.findViewById(R.id.userName);
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -75,18 +66,13 @@ public class HomePage extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(HomePage.this, "Something wrong happend!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Something wrong happened!", Toast.LENGTH_LONG).show();
 
             }
         });
 
+        return view;
+
 
     }
-
-
-
-
-
-
 }
-

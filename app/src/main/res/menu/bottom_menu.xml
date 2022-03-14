@@ -2,24 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="Chatroom"
-          android:icon="@drawable/chat2"
-           android:id="@+id/chat"
-
+        android:icon="@drawable/chat2"
+        android:id="@+id/chatroom"
         />
-
     <item android:title="Home"
         android:icon="@drawable/stadium2"
-        android:id="@+id/home"
-
-
-
-        />
-
+        android:id="@+id/Home" />
     <item android:title="Vote"
         android:icon="@drawable/vote2"
-        android:id="@+id/vote"
-
-
-
-        />
+        android:id="@+id/Vote" />
 </menu>

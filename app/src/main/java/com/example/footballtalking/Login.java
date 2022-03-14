@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,6 +26,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private EditText editPassword;
     private Button loginBtn;
     private ProgressBar progressBar;
+    private TextView forgetPassword;
 
 
     private FirebaseAuth mAuth;
@@ -77,6 +79,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         mAuth = FirebaseAuth.getInstance();
 
 
+        forgetPassword = (TextView) findViewById(R.id.forgetPassText);
+        forgetPassword.setOnClickListener(this);
+
+
 
     }
 
@@ -95,6 +101,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.loginButton:
                 userLogin();
+                break;
+            case R.id.forgetPassText:
+                startActivity(new Intent(this, ForgetPassword.class));
                 break;
         }
 
@@ -131,8 +140,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
-                    // redirect to user profile
-                    startActivity(new Intent(Login.this , HomePage.class));
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user.isEmailVerified()) {
+                        // redirect to user profile
+                        startActivity(new Intent(Login.this , FirstPage.class));
+                    } else {
+                        user.sendEmailVerification();
+                        Toast.makeText(Login.this , "Check your email to verify your account!" , Toast.LENGTH_LONG).show();
+                    }
+
                 }
                 else {
                     Toast.makeText(Login.this , "Failed to login! please check your information" , Toast.LENGTH_LONG).show();
