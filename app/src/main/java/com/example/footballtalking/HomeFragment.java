@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,8 @@ public class HomeFragment extends Fragment {
     private DatabaseReference reference;
     private String userID;
 
+    private Button toTeam;
+
 
     private ImageView logOut;
 
@@ -36,6 +39,15 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.activity_home_page, container, false);
+
+        toTeam = (Button) view.findViewById(R.id.toTeam);
+        toTeam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), TeamPage.class));
+
+            }
+        });
 
         logOut = (ImageView) view.findViewById(R.id.logOutBtn);
         logOut.setOnClickListener(new View.OnClickListener() {

@@ -60,7 +60,7 @@
         app:srcCompat="@mipmap/messageicon" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonLogin"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="137dp"
         android:layout_height="63dp"

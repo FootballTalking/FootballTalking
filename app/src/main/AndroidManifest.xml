@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FootballTalking">
         <activity
+            android:name=".TeamPage"
+            android:exported="false" />
+        <activity
             android:name=".EmailSent"
             android:exported="false" />
         <activity

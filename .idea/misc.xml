@@ -10,6 +10,7 @@
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/drawable/line.xml" value="0.1585" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/drawable/lock.xml" value="0.2885" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/drawable/newusericon.xml" value="0.2885" />
+        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/drawable/progress_track.xml" value="0.1625" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/drawable/rec_edge.xml" value="0.2535" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/drawable/req.xml" value="0.1585" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/drawable/req2.xml" value="0.1585" />
@@ -27,11 +28,12 @@
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_team_page.xml" value="0.3890625" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/fragment_chatroom.xml" value="0.2" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/fragment_dashboard.xml" value="0.5578125" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/fragment_home.xml" value="0.5578125" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/fragment_notifications.xml" value="0.2875" />
-        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/fragment_vote.xml" value="0.5578125" />
+        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/fragment_vote.xml" value="0.536" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/menu/bottom_menu.xml" value="0.5578125" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2875" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/menu/bottom_nev_menu.xml" value="0.3890625" />
