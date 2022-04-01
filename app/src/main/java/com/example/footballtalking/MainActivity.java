@@ -12,6 +12,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     private Button buttonLogin;
     private Button buttonSignUp;
+    private Button buttonLoginTeam;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        buttonLoginTeam = (Button) findViewById(R.id.loginButtonTeams);
+        buttonLoginTeam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openTeamPage();
+
+            }
+        });
     }
 
     public void openLoginPage() {
@@ -46,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openSignUpPage() {
         Intent intent = new Intent(this , SignUp.class);
+        startActivity(intent);
+    }
+
+    public void openTeamPage() {
+        Intent intent = new Intent(this , TeamLogin.class);
         startActivity(intent);
     }
 

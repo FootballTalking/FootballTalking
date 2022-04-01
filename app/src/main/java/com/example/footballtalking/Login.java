@@ -25,6 +25,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private EditText editEmail;
     private EditText editPassword;
     private Button loginBtn;
+    private Button buttonLoginTeam;
     private ProgressBar progressBar;
     private TextView forgetPassword;
 
@@ -55,6 +56,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 openMainPage();
+
+            }
+        });
+
+        buttonLoginTeam = (Button) findViewById(R.id.loginButtonTeams);
+        buttonLoginTeam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openTeamPage();
 
             }
         });
@@ -93,6 +103,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     public void openSignUpPage() {
         Intent intent = new Intent(this , SignUp.class);
+        startActivity(intent);
+    }
+
+    public void openTeamPage() {
+        Intent intent = new Intent(this , TeamLogin.class);
         startActivity(intent);
     }
 

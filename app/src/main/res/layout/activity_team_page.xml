@@ -8,15 +8,76 @@
     tools:context=".TeamPage">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/firestore_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
+    <EditText
+        android:id="@+id/QuestionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:ems="10"
+        android:fontFamily="@font/regular"
+        android:hint="Add Question"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="#566573"
+        app:layout_constraintBottom_toTopOf="@+id/QuestionBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.042" />
+
+    <Button
+        android:id="@+id/QuestionBtn"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="172dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/bold"
+        android:text="Send"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <EditText
+        android:id="@+id/option1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="Add Option 1"
+        android:textColor="@color/white"
+        android:textColorHint="#566573"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/QuestionTextView" />
+
+    <EditText
+        android:id="@+id/option2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="Add Option 2"
+        android:textColor="@color/white"
+        android:textColorHint="#566573"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/option1" />
+
+    <EditText
+        android:id="@+id/option3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Add Option 3"
+        android:textColor="@color/white"
+        android:textColorHint="#566573"
+        app:layout_constraintBottom_toTopOf="@+id/QuestionBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/option2"
+        app:layout_constraintVertical_bias="0.16" />
 </androidx.constraintlayout.widget.ConstraintLayout>

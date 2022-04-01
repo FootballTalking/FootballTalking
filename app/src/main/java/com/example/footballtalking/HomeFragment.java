@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
     private DatabaseReference reference;
     private String userID;
 
-    private Button toTeam;
+    private Button toTeam, totest;
 
 
     private ImageView logOut;
@@ -41,6 +41,16 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_home_page, container, false);
 
         toTeam = (Button) view.findViewById(R.id.toTeam);
+
+        totest = (Button) view.findViewById(R.id.btntotest);
+
+        totest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), poll_test_click.class));
+            }
+        });
+
         toTeam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

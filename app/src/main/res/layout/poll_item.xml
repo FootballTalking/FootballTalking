@@ -3,15 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="wrap_content"
+    android:padding="40dp">
+
+    <Button
+        android:id="@+id/SendAnswer"
+        android:layout_width="62dp"
+        android:layout_height="32dp"
+        android:text="Vote"
+        android:textSize="10sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/bold"
+        android:textColor="@color/white"
+        android:background="@drawable/req"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/list_question"
+        app:layout_constraintVertical_bias="0.925" />
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="203dp"
-        android:layout_height="124dp"
-        android:layout_marginTop="78dp"
-        android:layout_marginBottom="422dp"
+        android:layout_width="269dp"
+        android:layout_height="194dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -20,15 +36,117 @@
         app:srcCompat="@drawable/square" />
 
     <TextView
-        android:id="@+id/list_question"
+        android:id="@+id/numOfVoters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Question"
-        android:textSize="13dp"
+        android:text=""
+        android:textSize="9sp"
+        android:textColor="#566573"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintHorizontal_bias="0.586"
+        app:layout_constraintStart_toEndOf="@+id/SendAnswer"
+        app:layout_constraintTop_toBottomOf="@+id/persent3" />
 
+    <TextView
+        android:id="@+id/list_question"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bold"
+        android:text="Question"
+        android:textColor="@color/PrimaryColor"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
         app:layout_constraintEnd_toEndOf="@+id/imageView11"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
-        app:layout_constraintTop_toTopOf="@+id/imageView11" />
+        app:layout_constraintTop_toTopOf="@+id/imageView11"
+        app:layout_constraintVertical_bias="0.118"
+        />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/list_question"
+        app:layout_constraintVertical_bias="0.31">
+
+        <RadioButton
+            android:id="@+id/radio_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/PrimaryColor"
+            android:text="1" />
+
+        <RadioButton
+            android:id="@+id/radio_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/PrimaryColor"
+            android:text="2" />
+
+        <RadioButton
+            android:id="@+id/radio_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/PrimaryColor"
+            android:text="3" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/persent1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="88dp"
+        android:text="TextView"
+        android:inputType="number"
+        android:textColor="@color/PrimaryColor"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintStart_toEndOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/list_question"
+        app:layout_constraintVertical_bias="0.562" />
+
+    <TextView
+        android:id="@+id/persent3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="28dp"
+        android:text="TextView"
+        android:inputType="number"
+        android:textColor="@color/PrimaryColor"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintStart_toEndOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/persent2"
+        app:layout_constraintVertical_bias="0.366" />
+
+    <TextView
+        android:id="@+id/persent2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="56dp"
+        android:text="TextView"
+        android:inputType=""
+        android:textColor="@color/PrimaryColor"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintStart_toEndOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/persent1"
+        app:layout_constraintVertical_bias="0.352" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
