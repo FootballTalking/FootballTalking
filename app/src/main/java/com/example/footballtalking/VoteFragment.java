@@ -32,13 +32,6 @@ public class VoteFragment extends Fragment {
     private RecyclerView mFirestoreList;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-
-
-    private SeekBar seekBar1;
-    private SeekBar seekBar2;
-    private SeekBar seekBar3;
-
-
     private FirebaseFirestore firebaseFirestore;
     private FirestoreRecyclerAdapter adapter;
 
@@ -77,6 +70,7 @@ public class VoteFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull QuestionsViewHolder holder, int position, @NonNull poll_questions model) {
 
+
                 holder.list_ques.setText(model.getQuestion());
                 holder.persent1.setText(String.valueOf(model.getVotersOption1()));
                 holder.persent2.setText(String.valueOf(model.getVotersOption2()));
@@ -87,7 +81,7 @@ public class VoteFragment extends Fragment {
                 holder.votersOption1 = model.getVotersOption1();
                 holder.votersOption2 = model.getVotersOption2();
                 holder.votersOption3 = model.getVotersOption3();
-                holder.numOfVoters.setText("Voters: " + (model.getVotersOption1()+model.getVotersOption2()+model.getVotersOption3()));
+                holder.numOfVoters.setText("Voters: " + (model.getVotersOption1() + model.getVotersOption2() + model.getVotersOption3()));
                 holder.id = model.getId();
 
 
@@ -101,15 +95,22 @@ public class VoteFragment extends Fragment {
                         } else if (holder.radioButton2.getId() == radioID) {
                             holder.persent2.setText(String.valueOf(holder.votersOption2++));
                             model.setVotersOption2(holder.votersOption2);
+
                         } else {
                             holder.persent3.setText(String.valueOf(holder.votersOption3++));
                             model.setVotersOption3(holder.votersOption3);
+
                         }
 
-                        uploadData(model.getVotersOption1() ,model.getVotersOption2() , model.getVotersOption3() , holder.id);
+                        uploadData(model.getVotersOption1(), model.getVotersOption2(), model.getVotersOption3(), holder.id);
+                        //holder.sendBtn.setEnabled(false);
+
 
                     }
+
+
                 });
+
 
             }
         };
@@ -123,10 +124,10 @@ public class VoteFragment extends Fragment {
 
     }
 
-    private void uploadData(int votersOption1 , int votersOption2 , int votersOption3 , String id) {
-        firebaseFirestore.collection("poll_questions").document(id).update("votersOption1" , votersOption1);
-        firebaseFirestore.collection("poll_questions").document(id).update("votersOption2" , votersOption2);
-        firebaseFirestore.collection("poll_questions").document(id).update("votersOption3" , votersOption3);
+    private void uploadData(int votersOption1, int votersOption2, int votersOption3, String id) {
+        firebaseFirestore.collection("poll_questions").document(id).update("votersOption1", votersOption1);
+        firebaseFirestore.collection("poll_questions").document(id).update("votersOption2", votersOption2);
+        firebaseFirestore.collection("poll_questions").document(id).update("votersOption3", votersOption3);
 
     }
 
@@ -152,8 +153,6 @@ public class VoteFragment extends Fragment {
         private String id;
 
 
-
-
         public QuestionsViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -168,7 +167,6 @@ public class VoteFragment extends Fragment {
             persent2 = itemView.findViewById(R.id.persent2);
             persent3 = itemView.findViewById(R.id.persent3);
             numOfVoters = itemView.findViewById(R.id.numOfVoters);
-
 
             itemView.setOnClickListener(this);
 

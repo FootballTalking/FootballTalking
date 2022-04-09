@@ -12,33 +12,18 @@
         android:layout_height="wrap_content"
         android:background="@color/PrimaryColor">
 
-
-        <TextView
-            android:id="@+id/textView6"
+        <Button
+            android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="132dp"
-            android:layout_marginTop="311dp"
-            android:layout_marginEnd="131dp"
-            android:layout_marginBottom="310dp"
-            android:text="Chatroom Page"
-            android:textColor="@color/white"
+            android:layout_marginStart="134dp"
+            android:layout_marginTop="229dp"
+            android:layout_marginEnd="138dp"
+            android:layout_marginBottom="363dp"
+            android:text="Button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="800dp"
-            android:text="Chatroom Page"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
-            tools:layout_editor_absoluteX="132dp" />
-
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

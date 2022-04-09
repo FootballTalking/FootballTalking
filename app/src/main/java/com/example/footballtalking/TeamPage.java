@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -37,8 +39,10 @@ public class TeamPage extends AppCompatActivity {
     private Button questionBtn;
 
     ProgressDialog pd;
-
+    private Button btnAddOption;
+    private LinearLayout layout;
     FirebaseFirestore db;
+    private ArrayList<String> arr = new ArrayList<String>();
 
 
     @Override
@@ -48,9 +52,19 @@ public class TeamPage extends AppCompatActivity {
 
 
         questionTextView = (EditText) findViewById(R.id.QuestionTextView);
-        option1TextView = (EditText) findViewById(R.id.option1);
-        option2TextView = (EditText) findViewById(R.id.option2);
-        option3TextView = (EditText) findViewById(R.id.option3);
+        btnAddOption = (Button) findViewById(R.id.btn_addOption);
+        layout = (LinearLayout) findViewById(R.id.layout);
+
+        btnAddOption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText t = new EditText(TeamPage.this);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                t.setLayoutParams(params);
+                arr.add(t.getText().toString().trim());
+                layout.addView(t);
+            }
+        });
 
 
         questionBtn = (Button) findViewById(R.id.QuestionBtn);
@@ -65,12 +79,7 @@ public class TeamPage extends AppCompatActivity {
                 // input Data:
                 String question = questionTextView.getText().toString().trim();
 
-                String option1 = option1TextView.getText().toString().trim();
-
-                String option2 = option2TextView.getText().toString().trim();
-
-                String option3 = option3TextView.getText().toString().trim();
-                uploadData(question, option1, option2, option3);
+                uploadData(question, arr);
 
 
             }
@@ -79,20 +88,23 @@ public class TeamPage extends AppCompatActivity {
 
     }
 
-    private void uploadData(String question, String option1, String option2, String option3) {
+    public void uploadData(String question, ArrayList<String> arr) {
         pd.setTitle("Adding Question to Poll Page!");
         pd.show();
         String id = UUID.randomUUID().toString();
         Map<String, Object> doc = new HashMap<>();
         doc.put("question", question);
-        doc.put("option1", option1);
-        doc.put("option2", option2);
-        doc.put("option3", option3);
-        doc.put("id" , id);
-        doc.put("votersOption1" , 0);
-        doc.put("votersOption2" , 0);
-        doc.put("votersOption3" , 0);
 
+        int c = 1;
+
+        for (int i = 0; i < arr.size(); i++) {
+            doc.put("option" + c, arr.get(i));
+            doc.put("votersOption" + c, 0);
+            c++;
+        }
+
+
+        doc.put("id", id);
 
 
         db.collection("poll_questions").document(id).set(doc).addOnCompleteListener(new OnCompleteListener<Void>() {

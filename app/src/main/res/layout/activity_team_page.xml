@@ -3,81 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/PrimaryColor"
     android:layout_height="match_parent"
-    tools:context=".TeamPage">
+    android:background="@color/black"
+    tools:context=".MainActivity">
 
 
     <EditText
         android:id="@+id/QuestionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="104dp"
+
         android:ems="10"
-        android:fontFamily="@font/regular"
         android:hint="Add Question"
         android:inputType="textPersonName"
         android:textColor="@color/white"
         android:textColorHint="#566573"
-        app:layout_constraintBottom_toTopOf="@+id/QuestionBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/QuestionBtn"
         android:layout_width="150dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="172dp"
+        android:layout_marginBottom="56dp"
+        android:text="Send"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/bold"
-        android:text="Send"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/option1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="Add Option 1"
-        android:textColor="@color/white"
-        android:textColorHint="#566573"
+    <Button
+        android:id="@+id/btn_addOption"
+        android:layout_width="112dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/bold"
+        android:text="Add Option"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/QuestionTextView" />
 
-    <EditText
-        android:id="@+id/option2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:hint="Add Option 2"
-        android:textColor="@color/white"
-        android:textColorHint="#566573"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option1" />
-
-    <EditText
-        android:id="@+id/option3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Add Option 3"
-        android:textColor="@color/white"
-        android:textColorHint="#566573"
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="372dp"
+        android:layout_height="381dp"
+        android:layout_marginStart="2dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/QuestionBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option2"
-        app:layout_constraintVertical_bias="0.16" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_addOption"></LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
