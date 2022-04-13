@@ -151,6 +151,7 @@ public class chatroom extends AppCompatActivity {
 
 
             HashMap<String, Object> messageObj = new HashMap<>();
+
             messageObj.put("message", message);
             messageObj.put("user_name", user_name);
             messageObj.put("timestamp", FieldValue.serverTimestamp());

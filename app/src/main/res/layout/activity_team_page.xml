@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/QuestionBtn"
+        android:id="@+id/btnSend"
         android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginBottom="56dp"
@@ -60,7 +60,7 @@
         android:layout_height="381dp"
         android:layout_marginStart="2dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/QuestionBtn"
+        app:layout_constraintBottom_toTopOf="@+id/btnSend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"

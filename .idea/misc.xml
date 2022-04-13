@@ -37,15 +37,15 @@
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout-w936dp/activity_login.xml" value="0.27890625" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.5578125" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_bottom_navigation_bar.xml" value="0.5578125" />
-        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_chatroom.xml" value="0.4" />
+        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_chatroom.xml" value="0.536" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_email_sent.xml" value="0.3890625" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_first_page.xml" value="0.3890625" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_forget_password.xml" value="0.4" />
-        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_home_page.xml" value="0.4" />
-        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_home_page.xml" value="0.536" />
+        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_login.xml" value="0.6" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_poll_test_click.xml" value="0.3890625" />
-        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_sign_up.xml" value="0.5401301518438177" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_team_login.xml" value="0.2" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/activity_team_page.xml" value="0.3890625" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/chat_item.xml" value="0.4" />
@@ -58,7 +58,7 @@
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/my_message.xml" value="0.6" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/poll_item.xml" value="0.6" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/poll_test_click.xml" value="0.3890625" />
-        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/their_message.xml" value="0.3890625" />
+        <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/layout/their_message.xml" value="0.6" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/menu/bottom_menu.xml" value="0.5578125" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2875" />
         <entry key="..\:/Users/Khaled/AndroidStudioProjects/FootballTalking/app/src/main/res/menu/bottom_nev_menu.xml" value="0.3890625" />

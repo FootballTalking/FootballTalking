@@ -8,14 +8,11 @@ import java.util.List;
 public class poll_questions {
 
     private String question;
-
     private List<String> options = new ArrayList<>();
     private List<Long> voters = new ArrayList<>();
-
-
-
     private String id;
 
+    // poll_questions class has an empty constructor, which is required for Firestore's automatic data mapping.
     private poll_questions() {
 
     }

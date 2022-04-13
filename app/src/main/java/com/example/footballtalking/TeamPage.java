@@ -2,32 +2,21 @@ package com.example.footballtalking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,19 +28,16 @@ import java.util.UUID;
 public class TeamPage extends AppCompatActivity {
 
     private EditText questionTextView;
-    private EditText option1TextView;
-    private EditText option2TextView;
-    private EditText option3TextView;
-    private Button questionBtn;
-
-    ProgressDialog pd;
     private Button btnAddOption;
+    private Button btnSend;
+    ProgressDialog progressDialog;
     private LinearLayout layout;
-    FirebaseFirestore db;
-    public ArrayList<String> arr = new ArrayList<String>();
 
-    List<EditText> allEds = new ArrayList<EditText>();
-    EditText t;
+    FirebaseFirestore db;
+
+
+    List<EditText> allEditTextList = new ArrayList<EditText>();
+    EditText newEditText;
 
 
     @Override
@@ -59,76 +45,74 @@ public class TeamPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_page);
 
-
+        // assign ID's of QuestionTextView, layout, the Button for Add new Option in xml file to following variables:
         questionTextView = (EditText) findViewById(R.id.QuestionTextView);
-        btnAddOption = (Button) findViewById(R.id.btn_addOption);
         layout = (LinearLayout) findViewById(R.id.layout);
+        btnAddOption = (Button) findViewById(R.id.btn_addOption);
 
+
+        // every-time the user click on button (Add Option), a new EditTextView will generate dynamically to fill by the user.
         btnAddOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t = new EditText(TeamPage.this);
-                allEds.add(t);
-                t.setTextSize(15);
-                t.setGravity(Gravity.CENTER);
+                // generate New EditText ---> "New Option for the Question"
+                newEditText = new EditText(TeamPage.this);
+                // Add this new EditText to a List of type EditText
+                allEditTextList.add(newEditText);
+                // set Text Size for the EditText
+                newEditText.setTextSize(80);
+                // set Gravity of EditText to put it in the center of the layout
+                newEditText.setGravity(Gravity.CENTER);
+                // define the height and width
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                t.setLayoutParams(params);
-                arr.add(t.getText().toString());
-                // Log.d("Option: ", t.getText().toString());
-                layout.addView(t);
+                newEditText.setLayoutParams(params);
+                layout.addView(newEditText);
             }
         });
 
 
-        questionBtn = (Button) findViewById(R.id.QuestionBtn);
-
-        pd = new ProgressDialog(this);
-
+        progressDialog = new ProgressDialog(this);
         db = FirebaseFirestore.getInstance();
 
-        questionBtn.setOnClickListener(new View.OnClickListener() {
+        btnSend = (Button) findViewById(R.id.btnSend);
+
+        btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // input Data:
+                // get Question
                 String question = questionTextView.getText().toString().trim();
 
-                String[] strings = new String[allEds.size()];
-
-                for (int i = 0; i < allEds.size(); i++) {
-                    strings[i] = allEds.get(i).getText().toString();
+                String[] strings = new String[allEditTextList.size()];
+                for (int i = 0; i < allEditTextList.size(); i++) {
+                    strings[i] = allEditTextList.get(i).getText().toString();
                 }
+                ArrayList<String> allEditTextContentList = new ArrayList<>(Arrays.asList(strings));
 
-                ArrayList<String> rl = new ArrayList<>(Arrays.asList(strings));
-
-
-                uploadData(question, rl);
-
-
+                // pass Question & Options to uploadData Method to store it on the Database
+                uploadData(question, allEditTextContentList);
             }
         });
-
-
     }
 
-    public void uploadData(String question, ArrayList<String> rl) {
-        pd.setTitle("Adding Question to Poll Page!");
-        pd.show();
+
+    ////////////////////// ------------------ uploadData Method ------------------ //////////////////////
+
+    public void uploadData(String question, ArrayList<String> options) {
+        progressDialog.setTitle("Adding Question to Vote Page!");
+        progressDialog.show();
         String id = UUID.randomUUID().toString();
+
         Map<String, Object> doc = new HashMap<>();
         doc.put("question", question);
 
-
-
         ArrayList<Integer> voters = new ArrayList<>();
-        for (int i = 0; i < rl.size(); i++) {
+        for (int i = 0; i < options.size(); i++) {
             doc.put("voteOption" + i, 0);
-            voters.add(0);
+           // voters.add(0);
         }
 
-        doc.put("options", rl);
-        doc.put("voters", voters);
-
-
+        doc.put("options", options);
+       // doc.put("voters", voters);
         doc.put("id", id);
 
 
@@ -136,7 +120,7 @@ public class TeamPage extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 // this will be called when Data is added successfully
-                pd.dismiss();
+                progressDialog.dismiss();
                 Toast.makeText(TeamPage.this, "Added", Toast.LENGTH_LONG).show();
 
             }
@@ -144,7 +128,7 @@ public class TeamPage extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 // this will be called when there is an error
-                pd.dismiss();
+                progressDialog.dismiss();
                 Toast.makeText(TeamPage.this, "Error", Toast.LENGTH_LONG).show();
 
             }

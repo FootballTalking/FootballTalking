@@ -35,7 +35,7 @@
         android:elevation="2dp"
         android:paddingHorizontal="16dp"
         android:paddingVertical="12dp"
-        android:textColor="@color/PrimaryColor"
         android:text="How are you doing? This is a long message that should probably wrap."
+        android:textColor="@color/PrimaryColor"
         android:textSize="18dp" />
 </RelativeLayout>

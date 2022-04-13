@@ -18,9 +18,6 @@
             android:name=".TeamLogin"
             android:exported="false" />
         <activity
-            android:name=".poll_test_click"
-            android:exported="false" />
-        <activity
             android:name=".TeamPage"
             android:exported="false" />
         <activity

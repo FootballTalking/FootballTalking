@@ -25,11 +25,5 @@ public class Team {
         this.imageURL = imageURL;
     }
 
-    @Override
-    public String toString() {
-        return "Team{" +
-                "name='" + name + '\'' +
-                ", imageURL='" + imageURL + '\'' +
-                '}';
-    }
+
 }

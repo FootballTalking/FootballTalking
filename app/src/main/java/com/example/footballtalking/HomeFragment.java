@@ -59,6 +59,7 @@ public class HomeFragment extends Fragment implements RVInterface {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+
         mAdapter = new RVAdapter(matchList , getActivity() , this);
         recyclerView.setAdapter(mAdapter);
 

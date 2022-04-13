@@ -159,7 +159,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     if (user.isEmailVerified()) {
                         // redirect to user profile
                         startActivity(new Intent(Login.this , FirstPage.class));
-                    } else {
+
+
+                    }
+
+                    else {
                         user.sendEmailVerification();
                         Toast.makeText(Login.this , "Check your email to verify your account!" , Toast.LENGTH_LONG).show();
                     }
