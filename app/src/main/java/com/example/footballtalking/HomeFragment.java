@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements RVInterface {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new RVAdapter(matchList , getActivity());
+        mAdapter = new RVAdapter(matchList , getActivity() , this);
         recyclerView.setAdapter(mAdapter);
 
         fillMatchList();
@@ -133,6 +133,13 @@ public class HomeFragment extends Fragment {
 
         matchList.addAll(Arrays.asList(new Match[]{m1, m2, m3, m4, m5, m6, m7, m8}));
 
+
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity() , chatroom.class);
+        startActivity(intent);
 
     }
 }

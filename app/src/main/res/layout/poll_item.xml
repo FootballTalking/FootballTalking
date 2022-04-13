@@ -10,23 +10,22 @@
         android:id="@+id/SendAnswer"
         android:layout_width="62dp"
         android:layout_height="32dp"
-        android:text="Vote"
-        android:textSize="10sp"
-        android:textAllCaps="false"
-        android:fontFamily="@font/bold"
-        android:textColor="@color/white"
         android:background="@drawable/req"
+        android:fontFamily="@font/bold"
+        android:text="Vote"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
         app:layout_constraintEnd_toEndOf="@+id/imageView11"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/list_question"
-        app:layout_constraintVertical_bias="0.925" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="269dp"
-        android:layout_height="194dp"
+        android:layout_width="273dp"
+        android:layout_height="212dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,113 +39,62 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="9sp"
         android:textColor="#566573"
+        android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
         app:layout_constraintEnd_toEndOf="@+id/imageView11"
         app:layout_constraintHorizontal_bias="0.586"
-        app:layout_constraintStart_toEndOf="@+id/SendAnswer"
-        app:layout_constraintTop_toBottomOf="@+id/persent3" />
+        app:layout_constraintStart_toEndOf="@+id/SendAnswer" />
 
     <TextView
         android:id="@+id/list_question"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/bold"
-        android:text="Question"
-        android:textColor="@color/PrimaryColor"
         android:layout_gravity="center"
+        android:fontFamily="@font/bold"
         android:gravity="center_horizontal"
+        android:text="Question"
         android:textAlignment="center"
+        android:textColor="@color/PrimaryColor"
         android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
         app:layout_constraintEnd_toEndOf="@+id/imageView11"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
         app:layout_constraintTop_toTopOf="@+id/imageView11"
-        app:layout_constraintVertical_bias="0.118"
-        />
+        app:layout_constraintVertical_bias="0.118" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+    <LinearLayout
+        android:id="@+id/voteresLayout"
+        android:layout_width="64dp"
+        android:layout_height="126dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
         app:layout_constraintEnd_toEndOf="@+id/imageView11"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="@+id/imageView11"
+        app:layout_constraintTop_toTopOf="@+id/imageView11"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="182dp"
+        android:layout_height="118dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
         app:layout_constraintTop_toBottomOf="@+id/list_question"
-        app:layout_constraintVertical_bias="0.31">
+        app:layout_constraintVertical_bias="0.196">
 
-        <RadioButton
-            android:id="@+id/radio_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/PrimaryColor"
-            android:text="1" />
+        <RadioGroup
+            android:id="@+id/mRgAllButtons"
+            android:layout_width="match_parent"
 
-        <RadioButton
-            android:id="@+id/radio_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/PrimaryColor"
-            android:text="2" />
+            android:layout_height="match_parent">
 
-        <RadioButton
-            android:id="@+id/radio_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/PrimaryColor"
-            android:text="3" />
-    </RadioGroup>
+        </RadioGroup>
 
-    <TextView
-        android:id="@+id/persent1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="88dp"
-        android:text="TextView"
-        android:inputType="number"
-        android:textColor="@color/PrimaryColor"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
-        app:layout_constraintEnd_toEndOf="@+id/imageView11"
-        app:layout_constraintHorizontal_bias="0.984"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/list_question"
-        app:layout_constraintVertical_bias="0.562" />
-
-    <TextView
-        android:id="@+id/persent3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="28dp"
-        android:text="TextView"
-        android:inputType="number"
-        android:textColor="@color/PrimaryColor"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
-        app:layout_constraintEnd_toEndOf="@+id/imageView11"
-        app:layout_constraintHorizontal_bias="0.984"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/persent2"
-        app:layout_constraintVertical_bias="0.366" />
-
-    <TextView
-        android:id="@+id/persent2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="56dp"
-        android:text="TextView"
-        android:inputType=""
-        android:textColor="@color/PrimaryColor"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
-        app:layout_constraintEnd_toEndOf="@+id/imageView11"
-        app:layout_constraintHorizontal_bias="0.992"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/persent1"
-        app:layout_constraintVertical_bias="0.352" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

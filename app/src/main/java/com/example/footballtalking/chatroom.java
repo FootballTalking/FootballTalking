@@ -24,6 +24,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -38,14 +43,16 @@ public class chatroom extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private FirebaseFirestore firebaseFirestore;
     private FirestoreRecyclerAdapter adapter;
+    String user_name = "";
+
+    private DatabaseReference reference;
+    private FirebaseUser user;
+    private String userID;
+
 
     FirebaseAuth mAuth;
     Toolbar toolbar;
     EditText chat_box;
-
-
-
-
 
 
     @Override
@@ -55,8 +62,9 @@ public class chatroom extends AppCompatActivity {
         setContentView(R.layout.activity_chatroom);
 
 
+
         firebaseFirestore = FirebaseFirestore.getInstance();
-       toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -65,7 +73,7 @@ public class chatroom extends AppCompatActivity {
 
         // Query
         //Query query = firebaseFirestore.collection("Chat");
-        Query query = MAIN_CHAT_DATABASE.orderBy("timestamp" , Query.Direction.ASCENDING);
+        Query query = MAIN_CHAT_DATABASE.orderBy("timestamp", Query.Direction.ASCENDING);
 
         // RecyclerOptions
         FirestoreRecyclerOptions<ChatModel> options = new FirestoreRecyclerOptions.Builder<ChatModel>()
@@ -73,6 +81,8 @@ public class chatroom extends AppCompatActivity {
                 .build();
 
         adapter = new FirestoreRecyclerAdapter<ChatModel, ChatViewHolder>(options) {
+
+
             @NonNull
             @Override
             public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -84,6 +94,7 @@ public class chatroom extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull ChatViewHolder holder, int position, @NonNull ChatModel model) {
                 holder.message.setText(model.getMessage());
+                holder.username.setText(model.getUser_name());
 
 
             }
@@ -104,7 +115,34 @@ public class chatroom extends AppCompatActivity {
 
     public void addMessage(View view) {
         String message = chat_box.getText().toString();
-        //FirebaseUser user = mAuth.getCurrentUser();
+        //FirebaseUser userr = mAuth.getCurrentUser();
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        userID = user.getUid();
+
+
+        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
+
+                if (userProfile != null) {
+                    String uName = userProfile.name;
+                    user_name = uName;
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(chatroom.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+
         if (!TextUtils.isEmpty(message)) {
 
             Date today = new Date();
@@ -114,7 +152,7 @@ public class chatroom extends AppCompatActivity {
 
             HashMap<String, Object> messageObj = new HashMap<>();
             messageObj.put("message", message);
-            //messageObj.put("user_name" , user.getDisplayName());
+            messageObj.put("user_name", user_name);
             messageObj.put("timestamp", FieldValue.serverTimestamp());
             messageObj.put("messageID", messageID);
 
@@ -141,12 +179,14 @@ public class chatroom extends AppCompatActivity {
     private class ChatViewHolder extends RecyclerView.ViewHolder {
 
         private TextView message;
+        private TextView username;
 
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
 
             message = itemView.findViewById(R.id.message_body);
+            username = itemView.findViewById(R.id.name);
 
             //itemView.setOnClickListener(this);
 

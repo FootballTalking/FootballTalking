@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +30,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -42,7 +48,10 @@ public class TeamPage extends AppCompatActivity {
     private Button btnAddOption;
     private LinearLayout layout;
     FirebaseFirestore db;
-    private ArrayList<String> arr = new ArrayList<String>();
+    public ArrayList<String> arr = new ArrayList<String>();
+
+    List<EditText> allEds = new ArrayList<EditText>();
+    EditText t;
 
 
     @Override
@@ -58,10 +67,14 @@ public class TeamPage extends AppCompatActivity {
         btnAddOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText t = new EditText(TeamPage.this);
+                t = new EditText(TeamPage.this);
+                allEds.add(t);
+                t.setTextSize(15);
+                t.setGravity(Gravity.CENTER);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 t.setLayoutParams(params);
-                arr.add(t.getText().toString().trim());
+                arr.add(t.getText().toString());
+                // Log.d("Option: ", t.getText().toString());
                 layout.addView(t);
             }
         });
@@ -79,7 +92,16 @@ public class TeamPage extends AppCompatActivity {
                 // input Data:
                 String question = questionTextView.getText().toString().trim();
 
-                uploadData(question, arr);
+                String[] strings = new String[allEds.size()];
+
+                for (int i = 0; i < allEds.size(); i++) {
+                    strings[i] = allEds.get(i).getText().toString();
+                }
+
+                ArrayList<String> rl = new ArrayList<>(Arrays.asList(strings));
+
+
+                uploadData(question, rl);
 
 
             }
@@ -88,20 +110,23 @@ public class TeamPage extends AppCompatActivity {
 
     }
 
-    public void uploadData(String question, ArrayList<String> arr) {
+    public void uploadData(String question, ArrayList<String> rl) {
         pd.setTitle("Adding Question to Poll Page!");
         pd.show();
         String id = UUID.randomUUID().toString();
         Map<String, Object> doc = new HashMap<>();
         doc.put("question", question);
 
-        int c = 1;
 
-        for (int i = 0; i < arr.size(); i++) {
-            doc.put("option" + c, arr.get(i));
-            doc.put("votersOption" + c, 0);
-            c++;
+
+        ArrayList<Integer> voters = new ArrayList<>();
+        for (int i = 0; i < rl.size(); i++) {
+            doc.put("voteOption" + i, 0);
+            voters.add(0);
         }
+
+        doc.put("options", rl);
+        doc.put("voters", voters);
 
 
         doc.put("id", id);

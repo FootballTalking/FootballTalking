@@ -22,8 +22,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -168,10 +172,26 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             return;
         }
 
-        if (pass.length() < 6) {
-            editPassword.setError("Minimum password length should be 6 characters!");
+        if (pass.length() < 8) {
+            editPassword.setError("Minimum password length should be 8 characters!");
             editPassword.requestFocus();
             return;
+        }
+
+        if(!pass.matches("(.*[A-Z].*)")) {
+            editPassword.setError("Password must contain at least one uppercase!");
+            editPassword.requestFocus();
+            return;
+
+
+        }
+
+        if(!pass.matches("(.*[a-z].*)")) {
+            editPassword.setError("Password must contain at least one lowercase!");
+            editPassword.requestFocus();
+            return;
+
+
         }
 
         if (passAgain.isEmpty()) {
@@ -190,6 +210,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             editDoB.setError("Date of Birth is required!");
             editDoB.requestFocus();
             return;
+        }
+
+        if (getAge(dob) < 18) {
+            editDoB.setError("Sorry! Your age does not comply with the terms of use of the application!");
+            editDoB.requestFocus();
+            return;
+
         }
 
 
@@ -229,5 +256,39 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
+    }
+
+    private int getAge(String dobString){
+
+        Date date = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yy");
+        try {
+            date = sdf.parse(dobString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if(date == null) return 0;
+
+        Calendar dob = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+
+        dob.setTime(date);
+
+        int year = dob.get(Calendar.YEAR);
+        int month = dob.get(Calendar.MONTH);
+        int day = dob.get(Calendar.DAY_OF_MONTH);
+
+        dob.set(year, month+1, day);
+
+        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+            age--;
+        }
+
+
+
+        return age;
     }
 }
